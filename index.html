@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>M1nG (趙俊茗 / Junming Zhao), AI and ML engineer in Tokyo</title>
+<meta name="description" content="Junming Zhao (M1nG, 趙俊茗): computer science graduate student at Tokyo University of Technology. Recursive reasoning for time series, real-time voice and robotics prototypes. Open to 2027 new-graduate roles.">
+<link rel="canonical" href="https://shunmeicho.github.io/">
+<meta name="theme-color" content="#E3E7EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080C12" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="M1nG (趙俊茗 / Junming Zhao)">
+<meta property="og:description" content="Junming Zhao (M1nG, 趙俊茗): computer science graduate student at Tokyo University of Technology. Recursive reasoning for time series, real-time voice and robotics prototypes. Open to 2027 new-graduate roles.">
+<meta property="og:url" content="https://shunmeicho.github.io/">
+<meta property="og:image" content="https://shunmeicho.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@zjm330">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/bricolage-grotesque-latin-opsz-normal.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/hanken-grotesk-latin-400-normal.woff2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Junming Zhao","alternateName":["M1nG","趙俊茗","Shunmei Cho"],"url":"https://shunmeicho.github.io/","affiliation":{"@type":"CollegeOrUniversity","name":"Tokyo University of Technology"},"sameAs":["https://github.com/ShunmeiCho","https://x.com/zjm330","https://www.linkedin.com/in/俊茗-趙-3353933a9"]}</script>
+<style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;src:url(fonts/bricolage-grotesque-latin-opsz-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/hanken-grotesk-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/hanken-grotesk-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/hanken-grotesk-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{color-scheme:light}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+
+/* Layout concept: one fixed field of particles is the "fast clock" (L-module).
+   Scrolling advances the "slow clock" (H-module): every section change re-aims the whole field.
+   Content sits on top as a typographic index, big type, mono readouts, hairline structure. */
+:root{
+  --bg:#E3E7EA;          /* cool bone */
+  --bg2:#D8DEE2;
+  --ink:#0D131A;
+  --ink-rgb:13,19,26;
+  --mute:#566471;
+  --line:rgba(13,19,26,.16);
+  --sig:#2236F2;         /* ultramarine: the one signal colour */
+  --sig-rgb:34,54,242;
+  --sig-ink:#FFFFFF;
+  --bad:#C23B2E;
+  --f-disp:'Bricolage Grotesque','Noto Sans JP',system-ui,sans-serif;
+  --f-body:'Hanken Grotesk','Noto Sans JP','Noto Sans SC','PingFang SC','Hiragino Sans',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --f-cjk:'Noto Serif JP','Source Han Serif JP','Songti SC',serif;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --gutr:max(16px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#080C12;--bg2:#0F151E;--ink:#E6EBEF;--ink-rgb:230,235,239;--mute:#8793A0;--line:rgba(230,235,239,.16);
+  --sig:#8896FF;--sig-rgb:136,150,255;--sig-ink:#080C12;--bad:#FF8F80;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#080C12;--bg2:#0F151E;--ink:#E6EBEF;--ink-rgb:230,235,239;--mute:#8793A0;--line:rgba(230,235,239,.16);
+  --sig:#8896FF;--sig-rgb:136,150,255;--sig-ink:#080C12;--bad:#FF8F80;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;
+  padding-left:var(--gut);padding-right:var(--gutr);padding-block:0}
+::selection{background:var(--sig);color:var(--sig-ink)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--sig);outline-offset:4px;border-radius:2px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.mono{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:8px 12px;z-index:100}
+.skip:focus{left:var(--gut)}
+
+#field,#rings{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:1440px;margin:0 auto}
+
+/* nav */
+.nav{position:fixed;z-index:50;left:var(--gut);right:var(--gutr);top:env(safe-area-inset-top,0px);display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px;mix-blend-mode:normal}
+.nav::before{content:"";position:absolute;inset:0 calc(-1*var(--gutr)) -22px calc(-1*var(--gut));background:linear-gradient(to bottom,var(--bg) 35%,transparent);z-index:-1;pointer-events:none}
+.nav .mark{font-family:var(--f-disp);font-weight:800;font-size:1.15rem;letter-spacing:-.03em}
+.nav .links{display:flex;gap:28px}
+.nav a.l{position:relative;padding:4px 0}
+.nav a.l::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.nav a.l:hover::after,.nav a.l[aria-current="true"]::after{transform:scaleX(1);transform-origin:left}
+.ctl{display:flex;gap:6px;align-items:center}
+.pill{display:inline-flex;gap:2px;border:1px solid var(--line);border-radius:99px;padding:3px;background:rgba(var(--ink-rgb),.03);backdrop-filter:blur(8px)}
+.pill button{padding:5px 10px;border-radius:99px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.04em;transition:background .3s,color .3s}
+.pill button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.pill button:hover:not([aria-pressed="true"]){background:rgba(var(--ink-rgb),.1)}
+#theme,#snd{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;backdrop-filter:blur(8px);transition:background .3s}
+#theme:hover,#snd:hover{background:rgba(var(--ink-rgb),.08)}
+#theme svg,#snd svg{width:15px;height:15px}
+#snd .w{display:none}#snd[aria-pressed="true"] .w{display:block}#snd[aria-pressed="true"] .x{display:none}#snd[aria-pressed="true"]{color:var(--sig);border-color:var(--sig)}
+
+/* hero */
+.hs{position:relative;overflow-x:clip}
+.hsp{height:80svh}
+.hero{position:sticky;top:0;min-height:min(940px,100svh);display:grid;grid-template-rows:1fr auto;padding-top:84px;padding-bottom:24px;gap:22px}
+.hero .top{align-self:center;position:relative}
+.hero .bot,.hero .legend{will-change:transform,opacity}
+.kicker{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--mute);margin-bottom:14px}
+.kicker i{width:7px;height:7px;border-radius:50%;background:var(--sig);display:inline-block;margin-right:8px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{transform:scale(.4);opacity:.5}}
+.name{font-family:var(--f-disp);font-weight:800;font-variation-settings:"opsz" 96;font-size:clamp(4.8rem,min(32vw,43svh),28rem);line-height:.8;letter-spacing:-.05em;margin:0 0 0 -.04em;display:flex;overflow:hidden;padding-bottom:.08em}
+.name .ch{display:inline-block;will-change:transform}
+.name .ch.d{color:var(--sig)}
+.legend{position:absolute;right:0;top:46px;width:min(25ch,28vw);color:var(--mute);border-left:1px solid var(--line);padding-left:14px;display:grid;gap:10px;font-size:.88rem;line-height:1.4}
+.legend b{font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:2px}
+.legend b.s{color:var(--sig)}
+.cjk{font-family:var(--f-cjk);font-weight:900;font-size:clamp(1.8rem,6.2vw,5.4rem);line-height:1;letter-spacing:.02em;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;margin-top:clamp(10px,1.8vw,26px)}
+.cjk small{font-family:var(--f-mono);font-weight:400;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.hero .bot{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px 56px;align-items:end;border-top:1px solid var(--line);padding-top:22px}
+.lead{font-family:var(--f-disp);font-weight:500;font-size:clamp(1.35rem,2.5vw,2.25rem);line-height:1.12;letter-spacing:-.02em;max-width:24ch;margin:0 0 14px;text-wrap:balance}
+.lead em{font-style:normal;color:var(--sig)}
+.sub{color:var(--mute);max-width:60ch;margin:0;font-size:.95rem}
+.hud{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;display:grid;gap:7px;color:var(--mute)}
+.hud div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.hud b{font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.hud b.s{color:var(--sig)}
+.cue{margin-top:6px;display:flex;align-items:center;gap:10px}
+.cue span.bar{flex:1;height:1px;background:var(--line);position:relative;overflow:hidden}
+.cue span.bar::after{content:"";position:absolute;inset:0;background:var(--sig);transform:translateX(-100%);animation:sweep 2.8s cubic-bezier(.6,0,.2,1) infinite}
+@keyframes sweep{60%,100%{transform:translateX(100%)}}
+
+/* sections */
+section{padding-block:clamp(64px,8vw,130px)}
+.sh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px 56px;align-items:end;margin-bottom:clamp(36px,6vw,84px)}
+.sh h2{font-family:var(--f-disp);font-weight:700;font-size:clamp(2.3rem,6.2vw,6rem);line-height:.94;letter-spacing:-.035em;margin:0;text-wrap:balance}
+.sh p{margin:0;color:var(--mute);max-width:46ch;justify-self:end}
+.step{display:inline-flex;gap:10px;align-items:center;color:var(--sig);margin-bottom:18px}
+.step::before{content:"";width:22px;height:1px;background:currentColor}
+.rv{transform:translateY(34px);transition:transform 1s cubic-bezier(.16,.84,.24,1)}
+.rv.in{transform:none}
+
+/* project rows */
+.proj{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px 56px;padding-block:34px 40px;border-top:1px solid var(--line)}
+.proj::before{content:"";position:absolute;inset:0;background:rgba(var(--sig-rgb),.07);transform:scaleY(0);transform-origin:bottom;transition:transform .6s cubic-bezier(.2,.8,.2,1);z-index:-1}
+@media (hover:hover){.proj:hover::before{transform:scaleY(1)}}
+.proj .meta{position:sticky;top:96px;align-self:start;display:flex;flex-direction:column;gap:6px;color:var(--mute)}
+.proj .meta b{color:var(--ink);font-weight:500}
+.proj h3{font-family:var(--f-disp);font-weight:700;font-size:clamp(2.2rem,5.6vw,5rem);line-height:.95;letter-spacing:-.03em;margin:0 0 14px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+.proj h3 .ar{flex:none;width:clamp(28px,4vw,52px);height:clamp(28px,4vw,52px);border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;margin-top:.25em;transition:transform .5s cubic-bezier(.2,.8,.2,1),background .3s,color .3s}
+.proj:hover h3 .ar{transform:rotate(-45deg);background:var(--sig);color:var(--sig-ink);border-color:var(--sig)}
+.proj h3 .ar svg{width:46%;height:46%}
+.proj h4{font-family:var(--f-disp);font-weight:500;font-size:clamp(1.2rem,2.2vw,1.75rem);letter-spacing:-.02em;line-height:1.15;margin:0 0 14px;max-width:30ch;text-wrap:balance}
+.proj p{margin:0 0 12px;max-width:62ch;color:color-mix(in srgb,var(--ink) 78%,var(--bg))}
+.proj .body{min-width:0}
+@media (max-width:860px){.proj .meta{position:static}}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tags span{border:1px solid var(--line);border-radius:99px;padding:3px 11px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.04em;color:var(--mute)}
+
+/* HRM-Fin featured */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:30px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.fact{padding:16px 16px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.fact b{display:block;font-family:var(--f-disp);font-weight:700;font-size:clamp(1.5rem,2.8vw,2.5rem);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.fact b.sm{font-size:clamp(1.25rem,2.1vw,1.9rem);white-space:nowrap}
+.fact span{display:block;margin-top:8px;color:var(--mute);font-size:.84rem;line-height:1.35}
+.chart{margin-top:30px;border:1px solid var(--line);padding:18px 18px 8px;background:rgba(var(--ink-rgb),.025);backdrop-filter:blur(6px)}
+.chart .cap{display:flex;justify-content:space-between;gap:12px;color:var(--mute);flex-wrap:wrap}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--f-mono);fill:var(--mute);font-size:11px;letter-spacing:.04em}
+.chart text.k{fill:var(--ink);font-size:12px;font-weight:500}
+.chart text.s{fill:var(--sig);font-size:13px;font-weight:500}
+.chart .ax{stroke:var(--ink);stroke-width:1}
+.chart .tk{stroke:var(--mute);stroke-width:1}
+.chart .m1{stroke:var(--ink);stroke-width:2}
+.chart .m2{stroke:var(--sig);stroke-width:2}
+.chart .gap{stroke:var(--sig);stroke-width:1.5;fill:none}
+.chart .dot1{fill:var(--ink)}.chart .dot2{fill:var(--sig)}
+.chart .draw{stroke-dasharray:var(--len,300);stroke-dashoffset:var(--len,300);transition:stroke-dashoffset 1.4s cubic-bezier(.6,0,.2,1)}
+.chart.in .draw{stroke-dashoffset:0}
+.chart .pop{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .6s cubic-bezier(.3,1.6,.5,1) .9s}
+.chart.in .pop{transform:scale(1)}
+.note{border-left:2px solid var(--sig);padding:2px 0 2px 14px;margin:18px 0 0;max-width:60ch}
+
+/* pipeline */
+.pipe{margin-top:26px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;border-top:1px solid var(--line)}
+.pipe::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:100%;background:linear-gradient(90deg,transparent,var(--sig),transparent);background-size:22% 100%;background-repeat:no-repeat;animation:pkt 3.2s linear infinite}
+@keyframes pkt{from{background-position:-30% 0}to{background-position:130% 0}}
+.pipe div{padding:16px 12px 0 0;min-width:0}
+.pipe b{display:block;font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--sig);margin-bottom:6px}
+.pipe span{font-size:.88rem;line-height:1.3;color:var(--mute);display:block}
+
+/* recognition */
+.rec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+.rec a,.rec div{padding:26px 20px 26px 0;border-bottom:1px solid var(--line);display:grid;gap:8px;min-width:0}
+.rec div:nth-child(even){padding-left:28px;border-left:1px solid var(--line);padding-right:0}
+.rec strong{font-family:var(--f-disp);font-weight:600;font-size:clamp(1.25rem,2.2vw,1.8rem);letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
+.rec span.mono{color:var(--mute)}
+
+/* path */
+.path{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px 56px}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:78px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl li{display:grid;grid-template-columns:78px minmax(0,1fr);gap:0 34px;padding-block:14px;position:relative}
+.tl li::after{content:"";position:absolute;left:74px;top:23px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--ink)}
+.tl li.now::after{background:var(--sig);border-color:var(--sig);box-shadow:0 0 0 5px rgba(var(--sig-rgb),.2)}
+.tl .y{font-family:var(--f-mono);font-size:.82rem;color:var(--mute);padding-top:3px}
+.tl .t{font-family:var(--f-disp);font-weight:600;font-size:clamp(1.15rem,1.9vw,1.55rem);letter-spacing:-.02em;line-height:1.2;margin:0 0 3px}
+.tl .d{color:var(--mute);font-size:.92rem}
+.langs{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:22px;font-family:var(--f-cjk);font-weight:900;font-size:1.5rem}
+.langs span{opacity:.9}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.sk{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:end;padding-block:15px 13px;border-top:1px solid var(--line)}
+.sk b{font-family:var(--f-disp);font-weight:600;font-size:1.2rem;letter-spacing:-.02em;font-weight:600}
+.sk em{font-style:normal;text-align:right;color:var(--mute);white-space:nowrap}
+.sk i{grid-column:1/-1;height:3px;background:rgba(var(--ink-rgb),.1);position:relative;overflow:hidden;display:block}
+.sk i::after{content:"";position:absolute;inset:0;background:var(--sig);transform-origin:left;transform:scaleX(var(--w,.5));transition:transform 1.3s cubic-bezier(.2,.8,.2,1)}
+.sk.pre i::after{transform:scaleX(0)}
+.sk small{grid-column:1/-1;color:var(--mute);font-size:.84rem;line-height:1.35}
+.gear{margin-top:34px;display:flex;flex-wrap:wrap;gap:6px}
+.gear span{border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em}
+
+/* contact */
+.contact{padding-bottom:40px}
+.cp{margin:0 0 26px;max-width:52ch;color:var(--mute)}
+.ct{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.ct li{display:flex;align-items:stretch;border-bottom:1px solid var(--line);position:relative}
+.ct li[hidden]{display:none}
+.ct .row{flex:1;min-width:0;display:grid;grid-template-columns:minmax(80px,170px) minmax(0,1fr) auto;gap:16px;align-items:center;padding:20px 0;position:relative}
+.ct .row::before{content:"";position:absolute;inset:0 -16px;background:rgba(var(--sig-rgb),.08);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.ct .row:hover::before,.ct .row:focus-visible::before{transform:scaleX(1)}
+.ct .row b{font-family:var(--f-disp);font-weight:600;font-size:clamp(1.15rem,2.8vw,2.3rem);letter-spacing:-.025em;line-height:1.1;overflow-wrap:anywhere}
+.ct .row span.mono{color:var(--mute)}
+.ct .go{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),background .3s,color .3s}
+.ct .go::after{content:"";width:9px;height:9px;border-top:1.6px solid currentColor;border-right:1.6px solid currentColor;transform:rotate(45deg) translate(-1px,1px)}
+.ct .row:hover .go{background:var(--sig);color:var(--sig-ink);border-color:var(--sig);transform:rotate(-45deg)}
+.copy{align-self:center;margin-left:14px;border:1px solid var(--line);border-radius:99px;padding:8px 16px;transition:background .3s,color .3s}
+.copy:hover{background:var(--ink);color:var(--bg)}
+@media (max-width:860px){.ct .row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:16px 0}.ct .row b{grid-column:1}.ct .row span.mono{grid-column:1}.ct .row .go{grid-column:2;grid-row:1/3}}
+.compose{margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px}
+.compose h3{grid-column:1/-1;margin:0;color:var(--mute);font-weight:400}
+.compose label{display:grid;gap:6px;color:var(--mute);min-width:0}
+.compose .full{grid-column:1/-1}
+.compose input,.compose textarea{font:inherit;font-size:1rem;color:var(--ink);background:rgba(var(--ink-rgb),.04);border:1px solid var(--line);border-radius:0;padding:14px;width:100%;min-width:0;transition:border-color .3s,background .3s}
+.compose textarea{min-height:160px;resize:vertical}
+.compose input:focus,.compose textarea:focus{outline:none;border-color:var(--sig);background:rgba(var(--sig-rgb),.06)}
+.compose .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+.compose .act{grid-column:1/-1;display:flex;gap:14px 18px;align-items:center;flex-wrap:wrap}
+.compose button.btn{border:0}
+.compose .btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.compose .btn.alt:hover{background:var(--ink);color:var(--bg)}
+.compose .st{color:var(--mute);flex:1;min-width:200px}
+.compose .st.err{color:var(--bad)}
+@media (max-width:860px){.compose{grid-template-columns:minmax(0,1fr)}}
+.big{display:block;font-family:var(--f-disp);font-weight:800;font-size:clamp(3.4rem,15.5vw,15rem);line-height:.88;letter-spacing:-.045em;margin:0 0 24px -.03em;overflow-wrap:anywhere;text-wrap:balance}
+.big .u{background:linear-gradient(var(--sig),var(--sig)) 0 100%/0 .06em no-repeat;transition:background-size .7s cubic-bezier(.2,.8,.2,1);padding-bottom:.04em}
+.big:hover .u,.big:focus-visible .u{background-size:100% .06em}
+.cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 40px;align-items:end;border-top:1px solid var(--line);padding-top:22px}
+.cta p{margin:0;max-width:44ch;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 26px;border-radius:99px;background:var(--sig);color:var(--sig-ink);font-family:var(--f-mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;will-change:transform;transition:background .3s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+footer{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;color:var(--mute);border-top:1px solid var(--line);padding-block:20px 28px;margin-top:70px}
+footer b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+/* side indicator: slow clock */
+.hclock{position:fixed;z-index:40;right:var(--gutr);bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;color:var(--mute);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:6px 14px;transition:opacity .5s,transform .5s}
+.hclock.off{opacity:0;transform:translateY(12px)}
+.hclock b{color:var(--sig);font-weight:500;font-variant-numeric:tabular-nums}
+.hclock .trk{width:54px;height:2px;background:var(--line);position:relative}
+.hclock .trk i{position:absolute;left:0;top:0;bottom:0;background:var(--sig);width:0}
+
+/* cursor */
+#cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid var(--sig);border-radius:50%;pointer-events:none;z-index:90;opacity:0;transition:width .35s,height .35s,margin .35s,background .3s,opacity .3s;mix-blend-mode:normal}
+#cur.on{opacity:1}
+#cur.big2{width:70px;height:70px;margin:-35px 0 0 -35px;background:rgba(var(--sig-rgb),.14)}
+@media (hover:none){#cur{display:none}}
+
+@media (max-width:860px){
+  .name{font-size:min(42vw,30svh)}
+  .legend{display:none}
+  .nav .links{display:none}
+  .hero .bot,.sh,.proj,.path,.cta{grid-template-columns:minmax(0,1fr)}
+  .sh p{justify-self:start}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pipe{grid-template-columns:minmax(0,1fr);border-top:0;border-left:1px solid var(--line);padding-left:16px;gap:12px}
+  .pipe::before{display:none}
+  .pipe div{padding:0}
+  .stack{grid-template-columns:minmax(0,1fr)}
+  .rec{grid-template-columns:minmax(0,1fr)}
+  .rec div:nth-child(even){padding-left:0;border-left:0}
+  .tl::before{left:58px}.tl li{grid-template-columns:58px minmax(0,1fr);gap:0 26px}.tl li::after{left:54px}
+  .hclock .trk{display:none}
+  .btn{justify-self:start}
+}
+@media (max-width:420px){.ctl .pill button{padding:5px 8px}.facts{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{transform:none;transition:none}
+  .chart .draw{stroke-dashoffset:0;transition:none}.chart .pop{transform:none;transition:none}
+  .kicker i,.cue span.bar::after,.pipe::before{animation:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+<canvas id="rings" aria-hidden="true"></canvas>
+<div id="cur" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="mark" href="#top" aria-label="M1nG, top">M1nG<span style="color:var(--sig)">.</span></a>
+  <nav class="links mono" aria-label="Sections">
+    <a class="l" href="#work" data-i="nav_work">Work</a>
+    <a class="l" href="#path" data-i="nav_path">Path</a>
+    <a class="l" href="#stack" data-i="nav_stack">Stack</a>
+    <a class="l" href="#contact" data-i="nav_contact">Contact</a>
+  </nav>
+  <div class="ctl">
+    <div class="pill" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
+    <button id="snd" type="button" aria-pressed="false" aria-label="Sound off" title="Sound">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w" d="M16.5 9a4.2 4.2 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path class="x" d="M17 9.5l5 5M22 9.5l-5 5"/></svg>
+    </button>
+    <button id="theme" type="button" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="hclock mono off" id="hclock" aria-hidden="true"><span>H</span><b id="hcN">01</b><span class="trk"><i id="hcBar"></i></span><span id="hcName">Intro</span></div>
+
+<main class="wrap" id="top">
+  <!-- HERO -->
+  <div class="hs" id="hs">
+  <div class="hero" id="hero" data-h="0" data-hname="Intro">
+    <div class="top">
+      <div class="kicker mono"><span><i></i><span data-i="h_k1">Tokyo</span></span><span data-i="h_k2">M2 Computer Science</span><span data-i="h_k3">Class of 2027</span></div>
+      <h1 class="name" id="name" aria-label="M1nG">M1nG</h1>
+      <div class="legend"><p><b data-i="lg1">Fast clock · L</b><span data-i="lg1d">Every streak is one particle, moving one step per frame. Move your cursor through them.</span></p><p><b class="s" data-i="lg2">Slow clock · H</b><span data-i="lg2d">Every 120 steps the whole field re-aims. A ring marks each update.</span></p></div>
+      <div class="cjk"><span lang="ja">趙俊茗</span><small>Junming Zhao · Shunmei Cho</small></div>
+    </div>
+    <div class="bot">
+      <div>
+        <p class="lead" data-i="h_lead" data-html>I build models that think in <em>two timescales</em>, and machines that talk back.</p>
+        <p class="sub" data-i="h_sub">Research on recursive reasoning for time series at Tokyo University of Technology. Prototypes in robotics and real-time voice on the side.</p>
+      </div>
+      <div class="hud" aria-label="Live readout of the background field">
+        <div><span data-i="hud1">L-module step</span><b id="hudL">0</b></div>
+        <div><span data-i="hud2">H-module step</span><b class="s" id="hudH">0</b></div>
+        <div><span data-i="hud3">L steps per H step</span><b id="hudT">120</b></div>
+        <div class="cue"><span data-i="h_cue">Scrolling advances the slow clock</span><span class="bar"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hsp" aria-hidden="true"></div>
+  </div>
+
+  <!-- WORK -->
+  <section id="work" data-h="1" data-hname="Work">
+    <div class="sh rv">
+      <div><div class="step mono" data-i="w_step">Selected work</div></div>
+      <div><h2 data-i="w_h">What I built, in the order I would explain it.</h2></div>
+    </div>
+
+    <article class="proj rv" id="hrm">
+      <div class="meta mono"><b data-i="p1_tag">Research · 2025 – now</b><span>Ikuno Lab · PyTorch · Hydra · W&amp;B</span><span>Venus: 2 × RTX 6000 Ada</span></div>
+      <div class="body">
+        <h3>HRM-Fin<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></h3>
+        <h4 data-i="p1_h">A pre-registered experiment that did not win.</h4>
+        <p data-i="p1_d1">Does HRM-style recursion, a fast module nested inside a slow one, predict next-day open-to-close direction for the 17 TOPIX-17 ETFs from US sector ETFs? I froze the statistics, the data matrix and the sealed test folds before training anything, then matched both models at exactly 50,019,730 FLOPs.</p>
+        <p data-i="p1_d2">The N4 ensemble finished at 0.5548 out-of-fold LogLoss, short of the 0.5451 classical floor. Against its matched baseline SSR-6, the pre-registered rules return “indeterminate”. I report it exactly like that.</p>
+
+        <div class="chart" id="chart">
+          <div class="cap mono"><span data-i="c_cap">Out-of-fold LogLoss, lower is better</span><span>N4 vs classical floor</span></div>
+          <svg viewBox="0 0 640 210" role="img" aria-label="Number line: classical floor 0.5451, N4 ensemble 0.5548, gap 0.0097">
+            <line class="ax" x1="40" y1="130" x2="600" y2="130"/>
+            <g class="tk"><line x1="40" y1="130" x2="40" y2="136"/><line x1="180" y1="130" x2="180" y2="136"/><line x1="320" y1="130" x2="320" y2="136"/><line x1="460" y1="130" x2="460" y2="136"/><line x1="600" y1="130" x2="600" y2="136"/></g>
+            <text x="40" y="154" text-anchor="middle">0.540</text><text x="180" y="154" text-anchor="middle">0.545</text><text x="320" y="154" text-anchor="middle">0.550</text><text x="460" y="154" text-anchor="middle">0.555</text><text x="600" y="154" text-anchor="middle">0.560</text>
+            <line class="m1 draw" style="--len:70" x1="182.8" y1="130" x2="182.8" y2="60"/>
+            <line class="m2 draw" style="--len:70" x1="454.4" y1="130" x2="454.4" y2="60"/>
+            <circle class="dot1 pop" cx="182.8" cy="130" r="5.5"/><circle class="dot2 pop" cx="454.4" cy="130" r="5.5"/>
+            <text class="k" x="182.8" y="30" text-anchor="middle" data-i="c_a">Classical floor</text><text class="k" x="182.8" y="48" text-anchor="middle">0.5451</text>
+            <text class="s" x="454.4" y="30" text-anchor="middle" data-i="c_b">N4 ensemble</text><text class="s" x="454.4" y="48" text-anchor="middle">0.5548</text>
+            <path class="gap draw" style="--len:290" d="M182.8 100 H454.4"/>
+            <path class="gap" d="M182.8 94 V106 M454.4 94 V106"/>
+            <text class="s" x="318.6" y="92" text-anchor="middle">+0.0097</text>
+            <text x="600" y="190" text-anchor="end" data-i="c_ax">LogLoss</text>
+          </svg>
+        </div>
+
+        <div class="facts">
+          <div class="fact"><b data-count="50019730">50,019,730</b><span data-i="f1">FLOPs, both models matched exactly</span></div>
+          <div class="fact"><b class="sm">1,002×26×60×2</b><span data-i="f2">trading days × assets × window × channels</span></div>
+          <div class="fact"><b data-count="225">225</b><span data-i="f3">development fits, to fix hyperparameters</span></div>
+          <div class="fact"><b>50 / 50</b><span data-i="f4">paired runs completed, zero retries</span></div>
+          <div class="fact"><b data-count="52.52" data-dec="2" data-suf="%">52.52%</b><span data-i="f5">of next-day labels are ties</span></div>
+          <div class="fact"><b data-count="23.11" data-dec="2" data-suf="%">23.11%</b><span data-i="f6">class imbalance in the target</span></div>
+        </div>
+        <p class="note" data-i="p1_n">The negative result produced a second contribution: diagnostics about label ties, class imbalance and semantic traps in the data vendor's feed.</p>
+      </div>
+    </article>
+
+    <article class="proj rv" id="dh">
+      <div class="meta mono"><b data-i="p2_tag">Live system · Sept 2026</b><span>KOYABU SONIC · Intex Osaka</span><span data-i="p2_m">Full duplex voice</span></div>
+      <div class="body">
+        <h3 data-i="p2_n">Digital human<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></h3>
+        <h4 data-i="p2_h">A performer you can interrupt.</h4>
+        <p data-i="p2_d">A real-time digital human for a music festival. Speech in, speech out, full duplex: the audience or the MC can cut in mid-sentence and it stops. Naturalness and a consistent persona came before every other target.</p>
+        <div class="pipe" aria-label="Signal path">
+          <div><b>Listen</b><span data-i="pp1">Local speech-to-text, endpointing on silence</span></div>
+          <div><b>Think</b><span data-i="pp2">LLM streams; the gateway cuts at the first sentence end</span></div>
+          <div><b>Speak</b><span data-i="pp3">TTS starts on sentence one, not on the full reply</span></div>
+          <div><b>Move</b><span data-i="pp4">One 16 kHz PCM buffer feeds speakers and Audio2Face-3D</span></div>
+          <div><b>Show</b><span data-i="pp5">Unreal Engine 5.5 render, streamed to the browser over WebRTC</span></div>
+        </div>
+        <div class="tags"><span>NVIDIA Tokkio</span><span>Pipecat</span><span>Audio2Face-3D</span><span>Unreal Engine 5.5</span><span>WebRTC</span></div>
+      </div>
+    </article>
+
+    <article class="proj rv" id="claudia">
+      <div class="meta mono"><b data-i="p3_tag">Robotics · prototype</b><span>Unitree GO2</span></div>
+      <div class="body">
+        <h3>Claudia<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></h3>
+        <h4 data-i="p3_h">A quadruped with an LLM for a brain.</h4>
+        <p data-i="p3_d">A Unitree GO2 driven by a modular stack: speech recognition, language understanding, motion control. Built as a prototype of edge-AI design, where the thinking sits next to the hardware.</p>
+        <div class="tags"><span>ASR</span><span>NLU</span><span>Motion control</span><span>Edge AI</span></div>
+      </div>
+    </article>
+
+    <article class="proj rv" id="cc">
+      <div class="meta mono"><b data-i="p4_tag">Tooling · in daily use</b><span>Go</span></div>
+      <div class="body">
+        <h3>cc-clip<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></h3>
+        <h4 data-i="p4_h">Paste an image into a remote coding agent.</h4>
+        <p data-i="p4_d">A small Go tool: an SSH RemoteForward plus an xclip shim. A screenshot copied on my laptop lands in the Claude Code session running on the GPU server.</p>
+        <div class="tags"><span>Go</span><span>SSH</span><span>xclip</span><span>tmux</span></div>
+      </div>
+    </article>
+
+    <article class="proj rv" id="ime">
+      <div class="meta mono"><b data-i="p5_tag">Tooling · in daily use</b><span>macOS · Swift</span></div>
+      <div class="body">
+        <h3>cmd-ime<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></h3>
+        <h4 data-i="p5_h">A macOS input source switcher.</h4>
+        <p data-i="p5_d">A small Swift utility for switching input sources on macOS. The idea is mine and I use it every day. Most of the code was written with AI assistance.</p>
+        <div class="tags"><span>Swift</span><span>macOS</span><span>Input sources</span></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="rec" data-h="2" data-hname="Honours" style="padding-top:0">
+    <div class="sh rv">
+      <div><div class="step mono" data-i="r_step">Recognition</div></div>
+      <div><h2 data-i="r_h">Outside the lab.</h2></div>
+    </div>
+    <div class="rec rv">
+      <div><span class="mono">NVIDIA</span><strong data-i="r1">Student Ambassador, AI Team</strong></div>
+      <div><span class="mono">Kaggle · 2025</span><strong data-i="r2">Bronze medal, March Machine Learning Mania</strong></div>
+      <div><span class="mono">IPSJ · 2026/03</span><strong data-i="r3">Oral presentation, 88th National Convention</strong></div>
+      <div><span class="mono">NVIDIA DLI · 2025/12</span><strong data-i="r4">Accelerated Computing with CUDA Python, completed</strong></div>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section id="path" data-h="3" data-hname="Path">
+    <div class="sh rv">
+      <div><div class="step mono" data-i="pa_step">Path</div></div>
+      <div><h2 data-i="pa_h">Three languages, one direction.</h2></div>
+    </div>
+    <div class="path">
+      <div class="rv">
+        <p style="margin:0;color:var(--mute);max-width:34ch" data-i="pa_p">I moved from China to Japan in the middle of middle school, and work in Chinese, Japanese and English.</p>
+        <div class="langs" lang="ja"><span>中文</span><span>日本語</span><span style="font-family:var(--f-disp);font-weight:800;letter-spacing:-.03em">English</span></div>
+      </div>
+      <ol class="tl rv">
+        <li><span class="y">2016</span><div><p class="t" data-i="t1">Moves from China to Japan</p><span class="d" data-i="t1d">26 October, during middle school</span></div></li>
+        <li><span class="y">2018</span><div><p class="t" data-i="t2">Eimei High School</p><span class="d" data-i="t2d">After graduating from Akabane-Iwabuchi Junior High</span></div></li>
+        <li><span class="y">2021</span><div><p class="t" data-i="t3">Tokyo University of Technology</p><span class="d" data-i="t3d">B.S. Computer Science, Advanced Information track.</span></div></li>        <li><span class="y">2025</span><div><p class="t" data-i="t4">Graduate school, Ikuno Lab</p><span class="d" data-i="t4d">Bionics, Computer and Media Sciences, Computer Science. HRM-Fin, ABCI generative-AI hackathon, Kaggle bronze.</span></div></li>
+        <li class="now"><span class="y">2027</span><div><p class="t" data-i="t5">Expected completion, March</p><span class="d" data-i="t5d">Looking for a new-graduate role where models meet systems</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" data-h="4" data-hname="Stack">
+    <div class="sh rv">
+      <div><div class="step mono" data-i="s_step">Stack</div></div>
+      <div><h2 data-i="s_h">Years under the belt, stated plainly.</h2></div>
+    </div>
+    <div class="stack rv" id="stackList">
+      <div class="sk pre" style="--w:1"><b>Python</b><em class="mono">~3 yr</em><i></i><small data-i="k1">Time-series forecasting, Kaggle, custom training loops</small></div>
+      <div class="sk pre" style="--w:.7"><b>PyTorch</b><em class="mono">~2 yr</em><i></i><small data-i="k2">Transformer family, HRM / PHRM, halting control, custom losses</small></div>
+      <div class="sk pre" style="--w:.7"><b>Linux · GPU servers</b><em class="mono">~2 yr</em><i></i><small data-i="k3">Lab server and ABCI: environments, job scripts, GPU monitoring</small></div>
+      <div class="sk pre" style="--w:.7"><b>Docker</b><em class="mono">~2 yr</em><i></i><small data-i="k4">CUDA / PyTorch containers for NVIDIA ambassador work and a hackathon</small></div>
+      <div class="sk pre" style="--w:.7"><b>Shell · MATLAB</b><em class="mono">~2 yr</em><i></i><small data-i="k5">Pipeline automation, evaluation runs, result visualisation</small></div>
+      <div class="sk pre" style="--w:.35"><b>Java</b><em class="mono">~1 yr</em><i></i><small data-i="k6">Course, then teaching assistant for the same course</small></div>
+      <div class="sk pre" style="--w:.17"><b>JavaScript · TypeScript</b><em class="mono">~0.5 yr</em><i></i><small data-i="k7">Teaching assistant for a web programming course</small></div>
+      <div class="sk pre" style="--w:.25"><b>SQL</b><em class="mono">~0.5–1 yr</em><i></i><small data-i="k8">CRUD, joins, table design; research data is CSV and Parquet</small></div>
+    </div>
+    <div class="gear rv"><span>Claude Code</span><span>Codex CLI as reviewer</span><span>Ghostty + tmux</span><span>Hydra</span><span>Weights &amp; Biases</span><span>XGBoost · LightGBM</span><span>TensorRT-LLM</span><span>LoRA + SFT</span></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact" data-h="5" data-hname="Contact">
+    <div class="rv">
+      <div class="step mono" data-i="x_step">Contact</div>
+      <a class="big mag" href="#ct"><span class="u" data-i="x_big">Say hello.</span></a>
+    </div>
+    <p class="cp rv" data-i="x_p">Open to 2027 new-graduate roles in AI and machine learning engineering. Email is the fastest way to reach me.</p>
+    <ul class="ct rv" id="ct">
+      <li data-k="email"><a href="#" class="row" data-label="Email"><span class="mono">Email</span><b></b><span class="go"></span></a><button type="button" class="copy mono" id="copyMail" aria-label="Copy email address">Copy</button></li>
+      <li data-k="github"><a href="#" class="row" target="_blank" rel="noopener"><span class="mono">GitHub</span><b></b><span class="go"></span></a></li>
+      <li data-k="x"><a href="#" class="row" target="_blank" rel="noopener"><span class="mono">X</span><b></b><span class="go"></span></a></li>
+      <li data-k="linkedin"><a href="#" class="row" target="_blank" rel="noopener"><span class="mono">LinkedIn</span><b></b><span class="go"></span></a></li>
+    </ul>
+    <form class="compose rv" id="compose" novalidate>
+      <h3 class="mono" data-i="f_h">Or write here</h3>
+      <label><span class="mono" data-i="f_name">Name</span><input id="fName" name="name" type="text" autocomplete="name" required></label>
+      <label><span class="mono" data-i="f_mail">Your email</span><input id="fMail" name="email" type="email" autocomplete="email" required></label>
+      <label class="full"><span class="mono" data-i="f_msg">Message</span><textarea id="fMsg" name="message" required></textarea></label>
+      <label class="hp" aria-hidden="true">Leave empty<input id="fHp" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+      <div class="act">
+        <button class="btn" type="submit" id="fSend"><span data-i="f_send">Send</span></button>
+        <button class="btn alt" type="button" id="fCopy" hidden><span data-i="f_copy">Copy message</span></button>
+        <p class="st mono" id="fSt" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <footer class="mono"><span>© 2026 Junming Zhao</span><span>Tokyo <b id="clock">--:--:--</b> JST</span><span data-i="x_f">Built by hand. No frameworks.</span></footer>
+  </section>
+</main>
+
+<script>
+(function(){
+'use strict';
+var D=document,R=D.documentElement;
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function sget(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function sset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+/* ---------- i18n ---------- */
+var T={
+en:{},
+ja:{
+nav_work:'制作',nav_path:'経歴',nav_stack:'技術',nav_contact:'連絡',
+h_k1:'東京',h_k2:'修士2年 コンピュータサイエンス',h_k3:'2027年卒',
+h_lead:'<em>二つの時間尺度</em>で考えるモデルと、話し返す機械をつくっています。',
+h_sub:'東京工科大学で、時系列のための再帰的推論を研究しています。ロボティクスとリアルタイム音声のプロトタイプも手がけています。',
+lg1:'速い時計 · L',lg1d:'一本の筋が一粒の粒子で、1フレームに1ステップ進みます。カーソルで触れてみてください。',lg2:'遅い時計 · H',lg2d:'120ステップごとに、場全体が向きを変えます。更新のたびに輪が広がります。',hud1:'L モジュール ステップ',hud2:'H モジュール ステップ',hud3:'H 1回あたりの L ステップ',h_cue:'スクロールで遅い時計が進みます',
+w_step:'制作物',w_h:'説明したい順に、つくったもの。',
+p1_tag:'研究 · 2025 – 現在',p1_h:'事前登録した実験は、勝てませんでした。',
+p1_d1:'HRM 型の再帰、つまり速いモジュールを遅いモジュールの内側に入れた構造は、米国セクター ETF から TOPIX-17 ETF 17本の翌日の寄り引け方向を予測できるのか。学習の前に、統計手順・データ行列・封印したテスト分割を固定し、二つのモデルを FLOPs 50,019,730 で厳密に揃えました。',
+p1_d2:'N4 アンサンブルの OOF LogLoss は 0.5548 で、古典的な下限 0.5451 に届きませんでした。対応するベースライン SSR-6 との比較は、事前登録の規則に従うと「判定不能」です。そのまま報告しています。',
+c_cap:'OOF LogLoss(小さいほど良い)',c_a:'古典的下限',c_b:'N4 アンサンブル',c_ax:'LogLoss',
+f1:'FLOPs。両モデルを厳密に一致',f2:'営業日 × 資産 × ウィンドウ × チャネル',f3:'ハイパーパラメータ決定のための開発用学習',f4:'ペア学習が完了、再実行ゼロ',f5:'翌日ラベルのうち同値(タイ)の割合',f6:'目的変数のクラス不均衡',
+p1_n:'否定的な結果から、第二の成果が生まれました。ラベルのタイ、クラス不均衡、データ提供元の意味上の罠についての診断です。',
+p2_tag:'ライブ・システム · 2026年9月',p2_m:'全二重の音声',p2_n:'デジタルヒューマン',p2_h:'割り込める出演者。',
+p2_d:'音楽フェス向けのリアルタイム・デジタルヒューマン。音声入力から音声出力まで全二重で、観客や MC が話の途中で割り込めば止まります。何より先に、自然さとペルソナの一貫性を優先しました。',
+pp1:'ローカル音声認識、無音で発話終了を判定',pp2:'LLM はストリーム出力。最初の一文の終わりで切り出す',pp3:'返答全体ではなく、一文目から TTS を開始',pp4:'16 kHz PCM バッファ一本をスピーカーと Audio2Face-3D に分配',pp5:'Unreal Engine 5.5 で描画し、WebRTC でブラウザへ',
+p3_tag:'ロボティクス · プロトタイプ',p3_h:'LLM を頭脳にした四足ロボット。',
+p3_d:'Unitree GO2 を、音声認識・言語理解・動作制御のモジュール構成で動かします。思考をハードウェアの隣に置く、エッジ AI 設計のプロトタイプです。',
+p4_tag:'ツール · 日常的に使用',p4_h:'リモートのコーディングエージェントに画像を貼る。',
+p4_d:'SSH RemoteForward と xclip シムでできた小さな Go 製ツール。手元のノートPCでコピーしたスクリーンショットが、GPU サーバー上の Claude Code セッションに届きます。',
+p5_tag:'ツール · 日常的に使用',p5_h:'macOS の入力ソース切り替えツール。',p5_d:'macOS で入力ソースを切り替える小さな Swift 製ユーティリティ。発案は私で、毎日使っています。コードの大半は AI の支援で書きました。',r_step:'実績',r_h:'研究室の外で。',r1:'Student Ambassador(AI チーム)',r2:'銅メダル、March Machine Learning Mania',r3:'口頭発表、第88回全国大会',r4:'Accelerated Computing with CUDA Python 修了',
+pa_step:'経歴',pa_h:'三つの言語、一つの方向。',pa_p:'中学の途中で中国から日本へ。中国語・日本語・英語で仕事をしています。',
+t1:'中国から日本へ',t1d:'中学在学中の10月26日',t2:'叡明高等学校',t2d:'赤羽岩淵中学校を卒業後',t3:'東京工科大学',t3d:'コンピュータサイエンス学部 先進情報専攻。',t4:'大学院 生野研究室',t4d:'バイオ・情報メディア研究科 コンピュータサイエンス専攻。HRM-Fin、ABCI 生成AIハッカソン、Kaggle 銅メダル。',t5:'3月 修了見込み',t5d:'モデルとシステムが出会う場所で、新卒として働きたい',
+s_step:'技術',s_h:'経験年数は、そのまま書きます。',
+k1:'時系列予測、Kaggle、独自の学習ループ',k2:'Transformer 系、HRM / PHRM、停止制御、独自の損失関数',k3:'研究室サーバーと ABCI:環境構築、ジョブスクリプト、GPU 監視',k4:'NVIDIA アンバサダー活動とハッカソンでの CUDA / PyTorch コンテナ',k5:'パイプライン自動化、評価の実行、結果の可視化',k6:'授業を受け、同じ授業の TA を担当',k7:'Web プログラミング授業の TA',k8:'CRUD、結合、テーブル設計。研究データは CSV と Parquet',
+f_h:'または、ここから書く',f_name:'お名前',f_mail:'メールアドレス',f_msg:'メッセージ',f_send:'送信',f_copy:'全文をコピー',x_step:'連絡',x_big:'話しましょう。',x_p:'2027年卒として、AI・機械学習エンジニアの職を探しています。連絡はメールが最も確実です。',x_f:'手作り。フレームワークなし。'
+},
+zh:{
+nav_work:'作品',nav_path:'履历',nav_stack:'技术',nav_contact:'联系',
+h_k1:'东京',h_k2:'硕士二年级 计算机科学',h_k3:'2027 届',
+h_lead:'我做会在<em>两种时间尺度</em>上思考的模型,和会回话的机器。',
+h_sub:'在东京工科大学研究面向时间序列的递归推理。同时做机器人和实时语音的原型。',
+lg1:'快时钟 · L',lg1d:'每一道轨迹是一个粒子,每帧走一步。把光标伸进去试试。',lg2:'慢时钟 · H',lg2d:'每 120 步,整个场重新定向一次,并扩散出一圈涟漪。',hud1:'L 模块步数',hud2:'H 模块步数',hud3:'每个 H 步含 L 步数',h_cue:'滚动页面,慢时钟才会前进',
+w_step:'精选作品',w_h:'按我解释的顺序,列出做过的东西。',
+p1_tag:'研究 · 2025 至今',p1_h:'一个预先注册、却没有赢的实验。',
+p1_d1:'HRM 式递归,即把快模块嵌在慢模块里,能否用美国板块 ETF 预测 TOPIX-17 的 17 只 ETF 次日开盘到收盘的方向?训练之前,我先冻结了统计方案、数据矩阵和封存的测试折,再把两个模型的算力严格对齐到 50,019,730 FLOPs。',
+p1_d2:'N4 集成的样本外 LogLoss 为 0.5548,没有越过 0.5451 的经典下限。与对照模型 SSR-6 比较,按预先注册的规则,结论是“无法判定”。我就这样如实报告。',
+c_cap:'样本外 LogLoss,越低越好',c_a:'经典下限',c_b:'N4 集成',c_ax:'LogLoss',
+f1:'FLOPs,两个模型严格相等',f2:'交易日 × 资产 × 窗口 × 通道',f3:'用于确定超参数的开发拟合',f4:'配对训练全部完成,零重试',f5:'次日标签中的平局比例',f6:'目标变量的类别不平衡',
+p1_n:'这个负面结果带来了第二项贡献:关于标签平局、类别不平衡,以及数据供应商字段语义陷阱的诊断。',
+p2_tag:'现场系统 · 2026 年 9 月',p2_m:'全双工语音',p2_n:'数字人',p2_h:'一位可以被打断的表演者。',
+p2_d:'为音乐节做的实时数字人。语音进、语音出,全双工:观众或 MC 在它说到一半时插话,它就停下。自然度和人设一致性,排在所有其他指标之前。',
+pp1:'本地语音识别,以静音判定说完',pp2:'LLM 流式输出,网关在第一句结束处切开',pp3:'从第一句就开始合成,不等整段回复',pp4:'一路 16 kHz PCM 同时送给扬声器和 Audio2Face-3D',pp5:'Unreal Engine 5.5 渲染,经 WebRTC 推到浏览器',
+p3_tag:'机器人 · 原型',p3_h:'以 LLM 为大脑的四足机器人。',
+p3_d:'Unitree GO2 由模块化栈驱动:语音识别、语言理解、运动控制。它是一个边缘 AI 设计的原型,让思考发生在硬件旁边。',
+p4_tag:'工具 · 每天在用',p4_h:'把图片贴进远程的编程智能体。',
+p4_d:'一个 Go 小工具:SSH RemoteForward 加一个 xclip 垫片。我在笔记本上复制的截图,会直接出现在 GPU 服务器上运行的 Claude Code 会话里。',
+p5_tag:'工具 · 每天在用',p5_h:'一个 macOS 输入源切换工具。',p5_d:'一个用 Swift 写的 macOS 输入源切换小工具。创意是我的,我每天都在用。大部分代码是借助 AI 写出来的。',r_step:'荣誉',r_h:'实验室之外。',r1:'Student Ambassador(AI 团队)',r2:'铜牌,March Machine Learning Mania',r3:'口头报告,第 88 届全国大会',r4:'完成 Accelerated Computing with CUDA Python',
+pa_step:'履历',pa_h:'三种语言,一个方向。',pa_p:'初中途中从中国来到日本,用中文、日语、英语工作。',
+t1:'从中国来到日本',t1d:'初中期间,10 月 26 日',t2:'叡明高等学校',t2d:'毕业于赤羽岩渊中学之后',t3:'东京工科大学',t3d:'计算机科学学部 先进信息专攻。',t4:'研究生院 生野研究室',t4d:'生物·信息媒体研究科 计算机科学专攻。HRM-Fin、ABCI 生成式 AI 黑客松、Kaggle 铜牌。',t5:'预计 3 月修完',t5d:'想以应届生身份,去模型与系统交汇的地方工作',
+s_step:'技术',s_h:'经验年限,照实写。',
+k1:'时间序列预测、Kaggle、自写训练循环',k2:'Transformer 系、HRM / PHRM、停机控制、自定义损失',k3:'实验室服务器与 ABCI:环境搭建、作业脚本、GPU 监控',k4:'NVIDIA 大使活动与黑客松中的 CUDA / PyTorch 容器',k5:'流水线自动化、评测运行、结果可视化',k6:'先修课,再担任同一门课的助教',k7:'Web 编程课助教',k8:'增删改查、连接、表设计;研究数据是 CSV 与 Parquet',
+f_h:'或者在这里直接写',f_name:'姓名',f_mail:'你的邮箱',f_msg:'留言',f_send:'发送',f_copy:'复制全文',x_step:'联系',x_big:'打个招呼。',x_p:'正在找 2027 届应届生岗位,方向是 AI 与机器学习工程。邮件是最快的联系方式。',x_f:'手工打造,没有框架。'
+}};
+var en={},curLang='en';
+D.querySelectorAll('[data-i]').forEach(function(el){
+  var k=el.getAttribute('data-i');
+  /* keep arrow span inside h3 */
+  var arrow=el.querySelector(':scope > .ar');
+  en[k]={html:el.hasAttribute('data-html')||!!arrow,v:arrow?el.firstChild.textContent:el.innerHTML,arrow:!!arrow};
+  if(arrow)en[k].v=el.childNodes[0].textContent;
+});
+function setLang(l){
+  curLang=l;R.lang=l==='zh'?'zh-CN':l;
+  D.querySelectorAll('[data-i]').forEach(function(el){
+    var k=el.getAttribute('data-i'),src=(l!=='en'&&T[l]&&T[l][k]!=null)?T[l][k]:en[k].v;
+    var arrow=el.querySelector(':scope > .ar');
+    if(arrow){el.firstChild.textContent=src}
+    else if(src.indexOf('<')>-1)el.innerHTML=src;else el.textContent=src;
+  });
+  D.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===l))});
+  sset('lang',l);
+  /* first-line h3 text node when no data-i: nothing to do */
+}
+D.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang)})});
+var nl=(navigator.language||'en').toLowerCase(),want=sget('lang')||(nl.indexOf('ja')===0?'ja':nl.indexOf('zh')===0?'zh':'en');
+if(want!=='en')setLang(want);
+
+/* ---------- theme ---------- */
+var mq=matchMedia('(prefers-color-scheme: dark)');
+function isDark(){var t=R.getAttribute('data-theme');return t?t==='dark':mq.matches}
+D.getElementById('theme').addEventListener('click',function(){var n=isDark()?'light':'dark';R.setAttribute('data-theme',n);sset('theme',n);readColors()});
+var st=sget('theme');if(st)R.setAttribute('data-theme',st);
+mq.addEventListener&&mq.addEventListener('change',function(){setTimeout(readColors,30)});
+
+/* ---------- hero name ---------- */
+var nameEl=D.getElementById('name'),chars=[];
+(function(){var s='M1nG';nameEl.textContent='';
+  for(var i=0;i<s.length;i++){var c=D.createElement('span');c.className='ch'+(s[i]==='1'?' d':'');c.textContent=s[i];c.setAttribute('aria-hidden','true');nameEl.appendChild(c);chars.push(c)}
+  if(!reduce&&chars[0].animate){chars.forEach(function(c,i){c.animate([{transform:'translateY(105%) rotate(6deg)'},{transform:'none'}],{duration:1300,delay:250+i*110,easing:'cubic-bezier(.16,.84,.24,1)',fill:'backwards'})});}
+  /* variable-font width breathes with H step */
+})();
+
+/* ---------- sound (opt-in) ---------- */
+var AC=null,mg=null,soundOn=false,SCALE=[0,3,5,7,10,12,15,17];
+function initAudio(){if(AC)return;var C=window.AudioContext||window.webkitAudioContext;if(!C)return;try{AC=new C();mg=AC.createGain();mg.gain.value=.55;mg.connect(AC.destination)}catch(e){AC=null}}
+function pluck(semi,vol,dur){if(!soundOn||!AC)return;var t=AC.currentTime,f=174.6*Math.pow(2,semi/12),o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain();
+  o.type='sine';o2.type='triangle';o.frequency.value=f;o2.frequency.value=f*2.003;
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.014);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  o.connect(g);o2.connect(g);g.connect(mg);o.start(t);o2.start(t);o.stop(t+dur+.05);o2.stop(t+dur+.05)}
+var snd=D.getElementById('snd');
+snd.addEventListener('click',function(){initAudio();if(!AC)return;if(AC.state==='suspended')AC.resume();soundOn=!soundOn;
+  snd.setAttribute('aria-pressed',String(soundOn));snd.setAttribute('aria-label',soundOn?'Sound on':'Sound off');
+  if(soundOn){pluck(12,.07,1.6);setTimeout(function(){pluck(19,.05,1.6)},120)}});
+D.querySelectorAll('a,button').forEach(function(el){el.addEventListener('pointerenter',function(){if(el!==snd)pluck(24+(Math.random()*4|0)*3,.018,.35)})});
+
+/* ---------- field ---------- */
+var cv=D.getElementById('field'),cx=cv.getContext('2d'),rv=D.getElementById('rings'),rx=rv.getContext('2d'),W=0,H=0,DPR=1,N=0,P=[],col={ink:'13,19,26',sig:'34,54,242'};
+function readColors(){var s=getComputedStyle(R);col.ink=s.getPropertyValue('--ink-rgb').trim()||col.ink;col.sig=s.getPropertyValue('--sig-rgb').trim()||col.sig;cx.clearRect(0,0,W*DPR,H*DPR)}
+var T_PER=120,lStep=0,hStep=0,hIdx=0,cur={th:0,ph:0,rot:0},tar={th:0,ph:0,rot:0};
+var heroP=0,mx=-9999,my=-9999,svy=0,lastY=scrollY,rings=[],fieldOp=1,fieldTarget=1;
+function resize(){W=innerWidth;H=innerHeight;DPR=Math.min(devicePixelRatio||1,W*H>1.6e6?1.5:2);cv.width=rv.width=W*DPR;cv.height=rv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);rx.setTransform(DPR,0,0,DPR,0,0);
+  N=Math.round(Math.min(1200,Math.max(380,W*H/1500)));P=[];for(var i=0;i<N;i++)P.push(spawn({}))}
+function spawn(p){p.x=Math.random()*W;p.y=Math.random()*H;p.px=p.x;p.py=p.y;p.life=80+Math.random()*220;p.s=Math.random()<.14;p.v=.6+Math.random()*.9;return p}
+function hTick(forced){
+  hStep++;
+  var g=2.399963;tar.th=hStep*g;tar.ph=hStep*1.31;tar.rot=hStep*.83;
+  pluck(SCALE[hStep%8]+(hStep%3?0:-12),.06,2.2);if(hStep%2)pluck(SCALE[(hStep+4)%8]+12,.03,1.6);
+  rings.push({r:0,a:1,x:W*(.5+.22*Math.sin(hStep*1.7)),y:H*(.5+.2*Math.cos(hStep*1.3))});
+  if(rings.length>4)rings.shift();
+}
+function ang(u,v){
+  var ca=Math.cos(cur.rot),sa=Math.sin(cur.rot);
+  return cur.th+1.55*Math.sin(2.3*u*ca-1.7*v*sa+cur.ph)+1.55*Math.cos(2.1*v*ca+1.9*u*sa-cur.ph*.7);
+}
+function frame(){
+  lStep++;
+  if(lStep%T_PER===0)hTick();
+  var k=.028;cur.th+=(tar.th-cur.th)*k;cur.ph+=(tar.ph-cur.ph)*k;cur.rot+=(tar.rot-cur.rot)*k;
+  fieldOp+=(fieldTarget-fieldOp)*.05;cv.style.opacity=fieldOp.toFixed(3);
+  var y=scrollY;svy+=((y-lastY)-svy)*.12;lastY=y;
+  cx.globalCompositeOperation='destination-out';cx.fillStyle='rgba(0,0,0,.11)';cx.fillRect(0,0,W,H);cx.globalCompositeOperation='source-over';
+  var s=Math.min(W,H)*.5,boost=1+Math.min(Math.abs(svy)*.05,2.2)+heroP*1.1;
+  var ink=[],sig=[];
+  for(var i=0;i<P.length;i++){var p=P[i];
+    var a=ang((p.x-W/2)/s,(p.y-H/2)/s),sp=p.v*boost*1.05;
+    var vx=Math.cos(a)*sp,vy=Math.sin(a)*sp;
+    var dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;
+    if(d2<32400){var d=Math.sqrt(d2)+.001,f=(1-d/180)*3.2;vx+=(-dy/d)*f+(dx/d)*f*.5;vy+=(dx/d)*f+(dy/d)*f*.5}
+    p.px=p.x;p.py=p.y;p.x+=vx;p.y+=vy;p.life--;
+    if(p.life<=0||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){spawn(p);continue}
+    (p.s?sig:ink).push(p)}
+  cx.lineWidth=1.1;cx.lineCap='round';
+  cx.strokeStyle='rgba('+col.ink+',.42)';cx.beginPath();for(i=0;i<ink.length;i++){cx.moveTo(ink[i].px,ink[i].py);cx.lineTo(ink[i].x,ink[i].y)}cx.stroke();
+  cx.lineWidth=1.6;cx.strokeStyle='rgba('+col.sig+',.95)';cx.beginPath();for(i=0;i<sig.length;i++){cx.moveTo(sig[i].px,sig[i].py);cx.lineTo(sig[i].x,sig[i].y)}cx.stroke();
+  rx.clearRect(0,0,W,H);
+  for(i=rings.length-1;i>=0;i--){var r=rings[i];r.r+=4.2;r.a-=.0075;if(r.a<=0){rings.splice(i,1);continue}
+    rx.strokeStyle='rgba('+col.sig+','+(r.a*.45).toFixed(3)+')';rx.lineWidth=1.2;rx.beginPath();rx.arc(r.x,r.y,r.r,0,6.2832);rx.stroke()}
+  if(lStep%6===0){hudL.textContent=lStep.toLocaleString('en-US');hudH.textContent=hStep}
+}
+var hudL=D.getElementById('hudL'),hudH=D.getElementById('hudH');D.getElementById('hudT').textContent=T_PER;
+var running=true,raf=0,lastT=performance.now(),ema=16.7;
+function adapt(){if(ema>24&&P.length>260){P.length=Math.floor(P.length*.78)}else if(ema<15.8&&P.length<N){for(var k=0;k<50&&P.length<N;k++)P.push(spawn({}))}}
+function loop(){var t=performance.now(),dt=t-lastT;lastT=t;ema+=(Math.min(dt,100)-ema)*.06;if(running){frame();if(lStep%90===0)adapt();if(lStep%2===0)typeReact()}raf=requestAnimationFrame(loop)}
+resize();readColors();
+if(reduce){for(var q=0;q<260;q++)frame();hudL.textContent=lStep;hudH.textContent=hStep}
+else{loop()}
+addEventListener('resize',function(){resize()});
+D.addEventListener('visibilitychange',function(){running=!D.hidden});
+addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;if(e.pointerType==='mouse'){curEl.classList.add('on');curEl.style.transform='translate('+mx+'px,'+my+'px)'}},{passive:true});
+addEventListener('pointerleave',function(){mx=my=-9999;curEl.classList.remove('on')});
+D.addEventListener('mouseleave',function(){mx=my=-9999;curEl.classList.remove('on')});
+var curEl=D.getElementById('cur');
+D.querySelectorAll('a,button').forEach(function(el){el.addEventListener('pointerenter',function(){curEl.classList.add('big2')});el.addEventListener('pointerleave',function(){curEl.classList.remove('big2')})});
+
+/* ---------- slow clock: sections ---------- */
+var secs=[].slice.call(D.querySelectorAll('[data-h]')),hcN=D.getElementById('hcN'),hcBar=D.getElementById('hcBar'),hcName=D.getElementById('hcName');
+var linkMap={};D.querySelectorAll('.nav a.l').forEach(function(a){linkMap[a.getAttribute('href').slice(1)]=a});
+function setH(i){
+  if(i===hIdx)return;hIdx=i;hTick(true);
+  var s=secs[i];hcN.textContent=('0'+(i+1)).slice(-2);hcName.textContent=s.dataset.hname;hcBar.style.width=((i+1)/secs.length*100)+'%';
+  fieldTarget=i===0?1:.34;D.getElementById('hclock').classList.toggle('off',i===0);
+  Object.keys(linkMap).forEach(function(k){linkMap[k].removeAttribute('aria-current')});
+  if(s.id&&linkMap[s.id])linkMap[s.id].setAttribute('aria-current','true');
+}
+hcBar.style.width=(1/secs.length*100)+'%';
+function pick(){var mid=innerHeight*.45,best=0;secs.forEach(function(s,i){var r=s.getBoundingClientRect();if(r.top<=mid)best=i});setH(best)}
+addEventListener('scroll',pick,{passive:true});pick();
+
+
+/* ---------- hero scroll story ---------- */
+var hero=D.getElementById('hero'),hsp=D.querySelector('.hsp'),hbot=hero.querySelector('.bot'),hleg=hero.querySelector('.legend'),hcjk=hero.querySelector('.cjk'),hkick=hero.querySelector('.kicker'),ticked=false;
+function heroMetrics(){if(reduce){hsp.style.height='0';hero.style.position='relative';return}hero.style.top=Math.min(0,innerHeight-hero.offsetHeight)+'px'}
+function heroScroll(){if(reduce)return;var sp=innerHeight*.8,p=Math.max(0,Math.min(1,scrollY/sp));if(p===heroP)return;heroP=p;
+  var e=p*p*(3-2*p);
+  chars.forEach(function(c,i){var d=i-1.5;c.style.transform='translate('+(d*e*9).toFixed(2)+'vw,'+((i%2?1:-1)*e*16).toFixed(2)+'svh) rotate('+(d*e*7).toFixed(2)+'deg)'});
+  var f=Math.max(0,1-p*1.7);hbot.style.opacity=f;hbot.style.transform='translateY('+(p*40)+'px)';hleg.style.opacity=f;hkick.style.opacity=f;
+  hcjk.style.transform='translateY('+(e*-6)+'vh)';hcjk.style.opacity=Math.max(0,1-p*1.3);
+  hero.style.opacity=p>.72?Math.max(0,1-(p-.72)/.28):1;
+  if(p>.5&&!ticked){ticked=true;hTick()}else if(p<.25)ticked=false}
+addEventListener('scroll',heroScroll,{passive:true});addEventListener('resize',heroMetrics);heroMetrics();heroScroll();
+if(!reduce)setTimeout(function(){nameEl.style.overflow='visible'},2100);
+function typeReact(){if(reduce||heroP>.2||mx<0)return;
+  for(var i=0;i<chars.length;i++){var r=chars[i].getBoundingClientRect(),dx=mx-(r.left+r.width/2),dy=my-(r.top+r.height/2),d=Math.sqrt(dx*dx+dy*dy),k=Math.max(0,1-d/Math.max(260,r.width*1.2));
+    chars[i].style.fontVariationSettings='"opsz" 96,"wght" '+Math.round(800-k*500)}}
+
+/* ---------- reveals ---------- */
+var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.id==='chart')e.target.classList.add('in');
+  if(e.target.id==='stackList')e.target.querySelectorAll('.sk').forEach(function(s,i){setTimeout(function(){s.classList.remove('pre')},i*90)});
+  e.target.querySelectorAll&&e.target.querySelectorAll('[data-count]').forEach(count)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'}):null;
+D.querySelectorAll('.rv,#chart').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+if(!io)D.querySelectorAll('.sk').forEach(function(s){s.classList.remove('pre')});
+function count(el){if(reduce)return;var to=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',t0=performance.now(),dur=1500;
+  (function s(t){var p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,4),v=to*e;el.textContent=v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(s)})(t0)}
+
+/* ---------- magnetic ---------- */
+if(matchMedia('(hover:hover)').matches&&!reduce)D.querySelectorAll('.mag').forEach(function(el){
+  el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*.18,y=(e.clientY-r.top-r.height/2)*.28;el.style.transform='translate('+x+'px,'+y+'px)'});
+  el.addEventListener('pointerleave',function(){el.style.transition='transform .6s cubic-bezier(.2,1.4,.4,1)';el.style.transform='';setTimeout(function(){el.style.transition=''},600)})});
+
+
+/* ---------- contact ---------- */
+var LINKS={email:'shunmei.corp@gmail.com',github:'https://github.com/ShunmeiCho',x:'https://x.com/zjm330',linkedin:'https://www.linkedin.com/in/俊茗-趙-3353933a9'};
+D.querySelectorAll('#ct li').forEach(function(li){
+  var k=li.dataset.k,v=LINKS[k],a=li.querySelector('a.row'),b=a.querySelector('b');
+  if(!v){li.hidden=true;return}
+  if(k==='email'){a.href='mailto:'+v;b.textContent=v}
+  else{a.href=v;b.textContent=v.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}
+});
+/* project arrows: shown only when a destination exists. Add URLs here. */
+var PROJ={hrm:'',dh:'',claudia:'https://github.com/ShunmeiCho/Claudia',cc:'https://github.com/ShunmeiCho/cc-clip',ime:'https://github.com/ShunmeiCho/cmd-ime'};
+Object.keys(PROJ).forEach(function(id){
+  var art=D.getElementById(id),ar=art&&art.querySelector('.ar');if(!ar)return;
+  var u=PROJ[id];if(!u){ar.hidden=true;return}
+  var a=D.createElement('a');a.className='ar';a.href=u;a.target='_blank';a.rel='noopener';a.setAttribute('aria-label','Open '+id);a.innerHTML=ar.innerHTML;ar.replaceWith(a)});
+var cm=D.getElementById('copyMail');
+cm.addEventListener('click',function(){
+  function done(t){cm.textContent=t;setTimeout(function(){cm.textContent='Copy'},1600)}
+  try{navigator.clipboard.writeText(LINKS.email).then(function(){done('Copied')},function(){sel()})}catch(e){sel()}
+  function sel(){var b=D.querySelector('#ct li[data-k="email"] b'),r=D.createRange();r.selectNodeContents(b);var s=getSelection();s.removeAllRanges();s.addRange(r);done('Selected')}
+});
+
+
+/* ---------- compose form ---------- */
+/* Set FORM_ENDPOINT to a Formspree URL (https://formspree.io/f/xxxx) to send for real.
+   Empty: the form opens the visitor's mail app with the message prefilled. */
+var FORM_ENDPOINT='';
+var ST={f_ok:'Sent. I will reply soon.',f_err:'Could not send. Please email me directly.',f_bad:'Please fill in your name, a valid email and a message.',f_open:'Opening your mail app. If nothing opens, use Copy message.',
+  ja:{f_ok:'送信しました。返信までお待ちください。',f_err:'送信できませんでした。メールで直接ご連絡ください。',f_bad:'お名前、正しいメールアドレス、メッセージを入力してください。',f_open:'メールアプリを開きます。開かない場合は「全文をコピー」をお使いください。'},
+  zh:{f_ok:'已发送,我会尽快回复。',f_err:'发送失败,请直接发邮件给我。',f_bad:'请填写姓名、有效的邮箱和留言。',f_open:'正在打开邮件应用。若没有反应,请用“复制全文”。'}};
+function tr(k){return (curLang!=='en'&&ST[curLang]&&ST[curLang][k])||ST[k]}
+var fm=D.getElementById('compose'),fSt=D.getElementById('fSt'),fCopy=D.getElementById('fCopy'),fSend=D.getElementById('fSend');
+function say(k,err){fSt.textContent=tr(k);fSt.classList.toggle('err',!!err)}
+function composed(){var n=D.getElementById('fName').value.trim(),m=D.getElementById('fMail').value.trim(),t=D.getElementById('fMsg').value.trim();return{n:n,m:m,t:t,ok:!!n&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)&&!!t}}
+fm.addEventListener('submit',function(e){
+  e.preventDefault();if(D.getElementById('fHp').value)return;
+  var c=composed();if(!c.ok){say('f_bad',true);return}
+  if(FORM_ENDPOINT){
+    fSend.disabled=true;
+    fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:c.n,email:c.m,message:c.t,_subject:'Message from '+c.n+' via your site'})})
+      .then(function(r){if(!r.ok)throw 0;say('f_ok');fm.reset()}).catch(function(){say('f_err',true)}).then(function(){fSend.disabled=false});
+  }else{
+    var body=c.t+'\n\n-- '+c.n+' <'+c.m+'>';
+    fCopy.hidden=false;say('f_open');
+    location.href='mailto:'+LINKS.email+'?subject='+encodeURIComponent('Message from '+c.n)+'&body='+encodeURIComponent(body);
+  }});
+fCopy.addEventListener('click',function(){var c=composed(),txt='To: '+LINKS.email+'\n\n'+c.t+'\n\n-- '+c.n+' <'+c.m+'>';
+  try{navigator.clipboard.writeText(txt).then(function(){fSt.textContent='OK'},function(){D.getElementById('fMsg').select()})}catch(e){D.getElementById('fMsg').select()}});
+
+/* ---------- clock ---------- */
+var ck=D.getElementById('clock');
+function tick(){try{ck.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Tokyo',hour12:false})}catch(e){}}
+tick();setInterval(tick,1000);
+})();
+</script>
+
+</html>

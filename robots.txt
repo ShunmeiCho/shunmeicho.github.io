@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shunmeicho.github.io/sitemap.xml
